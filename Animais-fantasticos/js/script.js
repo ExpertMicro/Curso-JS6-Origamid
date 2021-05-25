@@ -1,28 +1,21 @@
-//const animais = document.getElementById('animais');
-//console.log(animais);
+const tabMenu = document.querySelectorAll('.js-tabmenu li');
+const tabContent = document.querySelectorAll('.js-tabcontent section');
 
-//const gridSection = document.getElementsByClassName('grid-section');
-//console.log(gridSection[0]);
 
-//const primeiraLi = document.querySelector('li');
-//console.log(primeiraLi);
+if(tabMenu.length && tabContent.length) {
 
-//const linksInternos = document.querySelector('[href^="#"]');
-//console.log(linksInternos.href);
+  tabContent[0].classList.add('ativo');
 
-//const animaisImg = document.querySelectorAll('img');
-//console.log(animaisImg);
-
-const imgs = document.querySelectorAll('img');
-//console.log(imgs);
-const imagens = document.querySelectorAll('img[src^="img/imagem"]');
-//console.log(imagens);
-
-const links = document.querySelectorAll('[href^="#"]');
-//console.log(links);
-
-const h2Animais = document.querySelector('.animais-descricao h2');
-//console.log(h2Animais);
-
-const paragrafos = document.querySelectorAll('p');
-console.log(paragrafos[paragrafos.length - 1]);
+  function activeTab(index) {
+    tabContent.forEach((section) => {
+      section.classList.remove('ativo');
+    })
+    tabContent[index].classList.add('ativo');
+  }
+  
+  tabMenu.forEach((itemMenu, index) => {
+    itemMenu.addEventListener('click', () => {
+      activeTab(index);
+    });
+  });
+}
