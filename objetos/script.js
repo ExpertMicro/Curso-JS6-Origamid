@@ -178,6 +178,7 @@ transacoes.forEach((item) => {
 //console.log(taxaTotal);
 //console.log(recebimentoTotal);
 
+/*
 const transportes = 'Carro;Avião;Trem;Ônibus;Bicicleta';
 const arrayTransportes = transportes.split(';');
 //console.log(arrayTransportes);
@@ -204,5 +205,36 @@ transacoes06.forEach((item) => {
     taxasTotall++;
   }
 });
+*/
+//console.log(taxasTotall);
 
-console.log(taxasTotall);
+
+let novoPreco = 48.49;
+novoPreco = novoPreco.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
+
+//console.log(novoPreco);
+
+let numeroAleatorio = Math.floor(Math.random() * (2000 - 1050 + 1) + 1050);
+//console.log(numeroAleatorio)
+
+const meusNumeros = '4, 5, 20, 8, 9';
+const meusNumerosArray = meusNumeros.split(', ');
+const numeroMaximo = Math.max(...meusNumerosArray);
+//console.log(numeroMaximo)
+
+const listaPrecos = ['R$ 59,99', ' R$ 100,00', 'R$ 230', 'r$ 200'];
+
+function limparPrecos(preco) {
+  preco = +preco.toUpperCase().replace('R$', '').trim().replace(',', '.');
+  preco = +preco.toFixed(2);
+  return preco;
+}
+
+let soma = 0;
+listaPrecos.forEach((preco) => {
+  soma = soma + limparPrecos(preco);
+});
+
+console.log(soma.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}));
+
+limparPrecos(listaPrecos[0]);
