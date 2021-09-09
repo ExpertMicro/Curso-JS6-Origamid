@@ -83,6 +83,15 @@ O sinal \b irá indicar que pretendemos fazer uma seleção que deve ter início
 Not Word Boundary \B
 É o contrário do \b.
 
+Anchor Beginning
+
+Com o ^ é possível informar que a busca deve ser iniciada no inicio da linha
+
+O \n irá selecionar o final de uma linha, quando criamos uma nova.
+
+Unicode \u
+
+O \u irá selecionar o respectivo caracter unicode, de acordo com o código passado em \uXXXX. Ex: \u0040 seleciona o @.
 
 */
 
@@ -99,3 +108,27 @@ const regexp = /[-.]/g; // Procura - ou .
 const regexDigito = /\B\d+\B/gi;
 '11_22 33-44 55é66 77e88'.replace(regexDigito, 'X');
 //1X_X2 33-44 55é66 7XeX8
+
+//Anchor Beginning
+const  regexxx = /^\w+/g;
+`andre@origamid.com
+constato@origamid.com`.replace(regexxx, 'X');
+// X@origamid.com
+//contato@origamid.com
+
+//Anchor End
+const  regexxx0 = /^\w+$/g;
+`andre@origamid.com
+constato@origamid.com`.replace(regexxx0, 'X');
+//seleciona o "com" da última linha
+
+const regexxz = /\n/g;
+
+`andre@origamid.com\ncontato@origamid.com`.replace(regexxz, '---');
+//andre@origamid.com---contato@origamid.com
+
+//Procura: @ ou ©
+const regexlll = /\u0040|\u00A9/g;
+'andre@origamid.com ©'.replace(regexlll, '---');
+// andre---origamid.com ---
+
