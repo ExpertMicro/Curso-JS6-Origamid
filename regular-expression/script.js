@@ -93,6 +93,23 @@ Unicode \u
 
 O \u irá selecionar o respectivo caracter unicode, de acordo com o código passado em \uXXXX. Ex: \u0040 seleciona o @.
 
+
+Grupo de Captura
+
+É possível definirmos grupos de captura, que poderão ser referenciados durante a substituição. Basta envolvermos um grupo entre () parênteses. A referência se cada grupo será feita com $n, sendo o primeiro $1.
+
+
+
+Mais do que Captura apenas
+
+Um grupo também serve para agruparmos uma sequência de caracteres que queremos em repetição.
+
+
+Positive Lookahead
+
+Faz a seleção dos itens que possuírem o padrão dentro de (?=) à sua frente. Apesar de utilizar () parênteses o positive lookahead não captura grupo.
+
+
 */
 
 const padraoRegexp = /a/g;
@@ -131,4 +148,33 @@ const regexxz = /\n/g;
 const regexlll = /\u0040|\u00A9/g;
 'andre@origamid.com ©'.replace(regexlll, '---');
 // andre---origamid.com ---
+
+
+//Grupo de captura
+
+const regexttt = /(\w+)@[\w.]+/g;
+
+'andre@email.com.br'.replace(regexttt, '$1@gmail.com');
+//andre@gmail.com
+
+//não usar esse regex para emails, ele falha em alguns casos
+
+
+//Procura: qualquer senquência de ta
+const regexooo = /(ta)+/gi;
+
+
+'Tatata, tata , ta'.replace(regexooo, 'Pá');
+//Pá, Pá, Pá
+
+
+
+//Positive Lookahead
+
+//Procura dígitos em sequência, que possuírem px, sem selecionar o px.
+const regexiii = /\d(?=px)/g;
+'2em, 4px, 5%, 2px, 1px'.replace(regexiii, 'X');
+//2em, Xpx, 5%, Xpx, Xpx
+
+
 
