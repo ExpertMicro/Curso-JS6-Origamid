@@ -364,7 +364,107 @@ const regexsex = /\w+/g;
 
 let regexResult;
 while((regexResult = regexsex.exec(fraze)) !== null) {
-      console.log(regexResult[0])
+      //console.log(regexResult[0])
 }
 
 
+// match()
+
+/*
+O match() é um método de strings que pode receber como argumento uma Regex. Existe uma diferença de resultados quando utilizamos a flag g ou não.
+
+*/
+
+const regexpttt = /\w{2,}/g;
+const regexSemG = /\w{2,}/;
+
+const fraseyyy = 'JavaScript, TypeScript e CoffeeScript';
+
+//console.log(fraseyyy.match(regexpttt));
+// ['JavaScript, 'TypeScript', 'CofeeScript']
+
+//console.log(fraseyyy.match(regexSemG));
+// ["JavaScript", index: 0, input: "JavaScript,
+// TypeScript e CoffeeScript", groups: undefined]
+
+
+
+// split()
+
+/* 
+O split serve para distribuirmos uma string em uma array, quebrando a string no argumento que for passado. Este método irá remover o match da array final.
+
+*/
+
+
+//console.log(fraseyyy.split(', '));
+//['JavaScript','TypeScript e CoffeeScript']
+
+//console.log(fraseyyy.split(/Script/g));
+//['Java',' Type',' e Coffee', '']
+
+
+
+// replace()
+
+/*
+O método replace() é o mais interessante por permitir a utilização de funcões de callback para cada match que ele der com a Regex
+
+*/
+
+const tagsss = `
+<ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+</ul>
+`;
+
+//console.log(tagsss.replace(/(?<=<\/?)\w+/g, 'div'));
+//console.log(tagsss.replace(/<li/g, '$& class="ativa"'));
+//   <div>
+//      <div>Item 1</div>
+//      <div>Item 2</div>
+//   </div>
+
+
+// Grupos de Captura
+
+const emailsss = `
+empresa@email.com
+contato@email.com
+suporte@email.com
+`;
+
+const  regexhhh = /(\w+@)[\w.]+/g;
+//substitui o email por gmail
+//console.log(emailsss.replace(regexhhh, '$1gmail.com'));
+
+// Callback
+
+/*
+Para substituições mais complexas, podemos utilizar um callback como segundo argumento do replace. O valor do return será o que irá substituir cada match.
+*/
+
+const minhaRegex = /(\w+)(@[\w]+)/g;
+
+const meuEmails = `joao@homail.com.br
+marta@ggmail.cm.br
+bruna@oulook.com.br`;
+
+const resultado = meuEmails.replace(minhaRegex, function(...args) {
+      //console.log(args);
+      if(args[2] === '@homail') {
+            return `${args[1]}@hotmail`;
+      }
+      else if (args[2] === '@ggmail') {
+            return `${args[1]}@gmail`;
+      }
+      else if(args[2] === 'oulook') {
+            return `${args[1]}@outlook`;
+      }
+      else {
+            return 'x';
+      }
+});
+
+console.log(resultado)
