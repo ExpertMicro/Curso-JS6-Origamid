@@ -15,7 +15,7 @@ export default class ValidarCpf {
     const cpfLimpo = this.limpar(cpf);
     return this.construir(cpfLimpo);
   }
-
+ 
   validar(cpf) {
     const matchCpf = cpf.match(/(?:\d{3}[-.\s]?){3}\d{2}/g);
     return (matchCpf && matchCpf[0] === cpf);
@@ -54,4 +54,5 @@ export default class ValidarCpf {
     return this;
   }
 }
+
 
