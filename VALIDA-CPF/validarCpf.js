@@ -69,24 +69,41 @@ export default class ValidarCpf {
     }
   }
 
+  validaDigitos(cpfElement) {
+    const arrayCpf = Array.from(this.limpar(cpfElement.value));
+    if (this.validaPdigito(this.element) === parseInt(arrayCpf[9]) && this.validaSdigito(this.element) === parseInt(arrayCpf[10])) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
 
   validarNaMudanca(cpfElement) {
+    
+    const meuCpf = this.limpar(cpfElement.value);
+    console.log(meuCpf);
+    
+    if(meuCpf.length != 11 || meuCpf == '11111111111' || meuCpf == '22222222222' || meuCpf == '33333333333' || meuCpf == '44444444444' || meuCpf == '55555555555' || meuCpf == '66666666666' || meuCpf == '77777777777' || meuCpf == '88888888888' || meuCpf == '99999999999 '|| meuCpf == '0123456789') {
+      console.log('cpf valido')
+
+    }
+    else {
+      console.log('cpf invalido')
+    }
+
+    /*
     if(this.validar(cpfElement.value)) {
-      const arrayCpf = Array.from(this.limpar(cpfElement.value));
-      console.log(arrayCpf);
-      if (this.validaPdigito(this.element) === parseInt(arrayCpf[9]) && this.validaSdigito(this.element) === parseInt(arrayCpf[10])) {
-        console.log('digito verificador valido')
-      }
-      else {
-        console.log('CPF invalido')
-      }
-      
+      this.validaDigitos(cpfElement);
       
     }
     else {
 
-    }
+    }*/
   }
+
+
 
   adicionaEvento() {
     this.element.addEventListener('change', () => {
